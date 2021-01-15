@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
+import Rating from "../Rating/Rating";
 const Discover = (props) => {
 
     const [items, setItems] = useState([]);
@@ -16,7 +17,12 @@ const Discover = (props) => {
             <ul>
                 {items && items.map(item => (
                     <li key={item.id}>
-                        {item.original_title}
+                        {item.original_title}&nbsp;
+                        {item.vote_average}
+                        <Rating
+                            value={Math.ceil(item.vote_average / 2)}
+                            edit={false}
+                        ></Rating>
                     </li>
                 ))}
             </ul>
