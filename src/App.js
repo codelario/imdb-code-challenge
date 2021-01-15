@@ -1,10 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 
-class App extends Component {
-  render() {
-    return <div className="App">
+import config from "./App.config";
+import Discover from "./components/Discover/Discover";
+
+function App(params) {
+  const [isFetching, setIsFetching] = useState(true);
+  const [discoverData, setDiscoverData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const url = `${config.DISCOVER_URL}?api_key=${config.API_KEY}`;
+    await fetch(url)
+      .then(res => res.json())
+      .then(response => {
+        setIsFetching(false);
+        setDiscoverData(response.results);
+      });
+  };
+
+  return (
+    <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,9 +38,16 @@ class App extends Component {
         >
           Learn React aca
       </a>
+        {isFetching}
+        <Discover
+          data={discoverData}
+          isFetching={isFetching}
+          test='prueba loca'
+        ></Discover>
       </header>
     </div>
-  }
+  );
+
 }
 
 export default App;
