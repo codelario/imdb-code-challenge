@@ -2,12 +2,9 @@ import config from "../App.config";
 
 const fetchData = async (url) => fetch(url).then(res => res.json());
 
-export const getDiscoveryList = () => {
-    const url = `${config.DISCOVER_URL}?api_key=${config.API_KEY}`;
-    return fetchData(url);
-}
+export const getDiscoveryList = () => fetchData(config.DISCOVER_URL);
 
 export const searchMovie = (query) => {
-    const url = `${config.SEARCH_URL}?api_key=${config.API_KEY}&query=${query}`;
+    const url = `${config.SEARCH_URL}&query=${query}`;
     return fetchData(url);
 }
