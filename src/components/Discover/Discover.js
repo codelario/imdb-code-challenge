@@ -11,8 +11,7 @@ const Discover = (props) => {
 
     return (
         <Fragment>
-            <div>From Discover {props.test}</div>
-
+            <div>Movies List</div>
             <p>{props.isFetching ? 'Loading Movies...' : ''}</p>
             <ul>
                 {items && items.map(item => (
