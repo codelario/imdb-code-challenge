@@ -14,6 +14,7 @@ const SEARCH_URL = `${API_URL}/search/movie?api_key=${API_KEY}`;
  * Images config properties
  */
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+const PREVIEW_URL = 'https://image.tmdb.org/t/p/w200';
 
 const config = {
     API_KEY,
@@ -21,6 +22,7 @@ const config = {
     DISCOVER_URL,
     SEARCH_URL,
     IMAGE_URL,
+    PREVIEW_URL,
 }
 
 export default config;

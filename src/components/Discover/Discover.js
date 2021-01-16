@@ -48,16 +48,15 @@ const Discover = (props) => {
 
     return (
         <Fragment>
-            <div>Movies List</div>
             <p>{props.isFetching ? 'Loading Movies...' : ''}</p>
             <div className={classes.root}>
                 <GridList cellHeight={160} cols={5} className={classes.gridList}>
                     <GridListTile key="Subheader" cols={5} style={{ height: 'auto' }}>
-                        <ListSubheader component="div">December</ListSubheader>
+                        <ListSubheader component="div">Popular Movies</ListSubheader>
                     </GridListTile>
                     {items && items.map((tile) => (
                         <GridListTile key={tile.id} cols={1} onClick={() => handleOpenModal(tile)}>
-                            <img src={`${configs.IMAGE_URL}${tile.poster_path}`} alt={tile.title} />
+                            <img src={`${configs.PREVIEW_URL}${tile.poster_path}`} alt={tile.title} />
                             <GridListTileBar
                                 title={tile.title}
                                 subtitle={<span>Release Date: {tile.release_date}</span>}

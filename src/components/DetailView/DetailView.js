@@ -39,14 +39,14 @@ const DetailView = (props) => {
         <CardActionArea>
           <CardMedia
             component="img"
-            alt={props.item.original_title}
+            alt={props.item.title}
             height="140"
             image={`${config.IMAGE_URL}${props.item.poster_path}`}
-            title={props.item.original_title}
+            title={props.item.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.item.original_title}
+              {props.item.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.item.overview}

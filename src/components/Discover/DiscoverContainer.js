@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 import Discover from "./Discover";
-import SearchInput from "../SearchInput/SearchInput";
-import Rating from "../Rating/Rating";
+import HeaderContainer from "../HeaderContainer/HeaderContainer";
 import { getDiscoveryList, searchMovie } from '../../utils/api';
 
 const DiscoverContainer = (props) => {
@@ -42,13 +41,10 @@ const DiscoverContainer = (props) => {
 
     return (
         <Fragment>
-            <SearchInput
+            <HeaderContainer
                 searchQueryFn={searchQuery}
-            ></SearchInput>
-            Rating Component
-            <Rating
                 filterByRateFn={filterByRate}
-            ></Rating>
+            ></HeaderContainer>
             <Discover
                 data={discoverData}
                 isFetching={isFetching}
