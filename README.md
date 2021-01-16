@@ -2,7 +2,7 @@
 
 ## `Instalation`
 
-Clone the repository from https://github.com/codelario/imdb-code-challenge.\
+Clone the repository from https://github.com/codelario/imdb-code-challenge. \
 Run npm install
 
 ## Available Scripts
