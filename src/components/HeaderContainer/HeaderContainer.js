@@ -37,6 +37,7 @@ const HeaderContainer = (props) => {
             <Grid item lg>
               <SearchInput
                 searchQueryFn={props.searchQueryFn}
+                resetMovieslistFn={props.resetMovieslistFn}
               ></SearchInput>
             </Grid>
             <Grid item xs>

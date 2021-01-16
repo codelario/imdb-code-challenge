@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import configs from "../../App.config";
 import DetailView from "../DetailView/DetailView";
+import imdbNoImage from './public/img/imdb-no-image.jpg';
 
 const Discover = (props) => {
 
@@ -32,6 +33,9 @@ const Discover = (props) => {
         icon: {
             color: 'rgba(255, 255, 255, 0.54)',
         },
+        gridListTile: {
+            cursor: 'pointer',
+        }
     }));
 
     const classes = useStyles();
@@ -54,19 +58,22 @@ const Discover = (props) => {
                     <GridListTile key="Subheader" cols={5} style={{ height: 'auto' }}>
                         <ListSubheader component="div">Popular Movies</ListSubheader>
                     </GridListTile>
-                    {items && items.map((tile) => (
-                        <GridListTile key={tile.id} cols={1} onClick={() => handleOpenModal(tile)}>
-                            <img src={`${configs.PREVIEW_URL}${tile.poster_path}`} alt={tile.title} />
-                            <GridListTileBar
-                                title={tile.title}
-                                subtitle={<span>Release Date: {tile.release_date}</span>}
-                                actionIcon={
-                                    <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                    </IconButton>
-                                }
-                            />
-                        </GridListTile>
-                    ))}
+                    {items && items.map((tile) => {
+                        const previewImg = (!tile.poster_path) ? imdbNoImage : `${configs.PREVIEW_URL}${tile.poster_path}`;
+                        return (
+                            <GridListTile key={tile.id} cols={1} onClick={() => handleOpenModal(tile)} className={classes.gridListTile}>
+                                <img src={previewImg} alt={tile.title} />
+                                <GridListTileBar
+                                    title={tile.title}
+                                    subtitle={<span>Release Date: {tile.release_date}</span>}
+                                    actionIcon={
+                                        <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
+                                        </IconButton>
+                                    }
+                                />
+                            </GridListTile>
+                        )
+                    })}
                 </GridList>
             </div>
             <Modal

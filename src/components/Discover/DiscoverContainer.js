@@ -39,11 +39,14 @@ const DiscoverContainer = (props) => {
         setDiscoverData(filteredMovieList);
     }
 
+    const resetMovieslist = () => setDiscoverData(movieList);
+
     return (
         <Fragment>
             <HeaderContainer
                 searchQueryFn={searchQuery}
                 filterByRateFn={filterByRate}
+                resetMovieslistFn={resetMovieslist}
             ></HeaderContainer>
             <Discover
                 data={discoverData}

@@ -7,11 +7,10 @@ const Rating = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   const ratingChanged = (newRating) => {
-    if (newRating === selectedItem) {
-      return;
+    if (newRating !== selectedItem) {
+      setSelectedItem(newRating);
+      props.filterByRateFn(newRating)
     }
-    setSelectedItem(newRating);
-    return props.filterByRateFn(newRating)
   };
 
   return (

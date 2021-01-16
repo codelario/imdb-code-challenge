@@ -27,6 +27,7 @@ const SearchInput = (props) => {
     const classes = useStyles();
     const handleQueryButton = (evt) => {
         if (evt.target.value.length < 3) {
+            props.resetMovieslistFn();
             return;
         }
         props.searchQueryFn(evt.target.value);
