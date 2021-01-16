@@ -1,28 +1,36 @@
-import React, { useState } from 'react';
-import ReactStars from "react-rating-stars-component";
+import React, { useEffect, useState } from 'react';
 import styles from './Rating.module.scss';
+import { Rating as RatingStars } from '@material-ui/lab';
 
 const Rating = (props) => {
 
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(0);
+  useEffect(() => {
+    if (props.fireResetRating) {
+      resetRatingValue();
+    }
+  }, [props.fireResetRating]);
 
   const ratingChanged = (newRating) => {
     if (newRating !== selectedItem) {
       setSelectedItem(newRating);
+      props.updatingRatingFn();
       props.filterByRateFn(newRating)
     }
   };
 
+  const resetRatingValue = () => setSelectedItem(0);
+
   return (
     <div className={styles.Rating}>
-      <ReactStars
-        value={(!props.value ? 0 : props.value)}
-        count={5}
-        onChange={ratingChanged}
-        size={24}
-        activeColor="#ffd700"
-        edit={props.edit}
-      />,
+
+      <RatingStars
+        name="hover-feedback"
+        value={selectedItem}
+        onChange={(event, newValue) => {
+          ratingChanged(newValue);
+        }}
+      />
     </div>
   )
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +8,19 @@ import Rating from "../Rating/Rating";
 import backgroundImage from './public/img/header-background.png';
 
 const HeaderContainer = (props) => {
+
+  const [fireResetRating, setFireResetRating] = useState(false)
+
+  const searchMovies = (query) => {
+    setFireResetRating(true);
+    props.searchQueryFn(query);
+  }
+
+  const updatingRating = () => setFireResetRating(false);
+
+  const filterByRate = (rating) => {
+    props.filterByRateFn(rating);
+  }
 
   const styles = {
     containerStyles: {
@@ -36,13 +49,16 @@ const HeaderContainer = (props) => {
           <Grid container spacing={1}>
             <Grid item lg>
               <SearchInput
-                searchQueryFn={props.searchQueryFn}
+                searchQueryFn={searchMovies}
                 resetMovieslistFn={props.resetMovieslistFn}
+                updatingRatingFn={fireResetRating}
               ></SearchInput>
             </Grid>
             <Grid item xs>
               <Rating
-                filterByRateFn={props.filterByRateFn}
+                filterByRateFn={filterByRate}
+                fireResetRating={fireResetRating}
+                updatingRatingFn={updatingRating}
               ></Rating>
             </Grid>
           </Grid>

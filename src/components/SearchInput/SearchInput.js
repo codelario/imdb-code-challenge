@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -7,6 +7,14 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 const SearchInput = (props) => {
+
+    const [inputValue, setInputValue] = useState('');
+
+    useEffect(() => {
+        if (!props.updatingRatingFn) {
+            setInputValue('');
+        }
+    }, [props.updatingRatingFn]);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -26,6 +34,7 @@ const SearchInput = (props) => {
 
     const classes = useStyles();
     const handleQueryButton = (evt) => {
+        setInputValue(evt.value);
         if (evt.target.value.length < 3) {
             props.resetMovieslistFn();
             return;
@@ -43,6 +52,7 @@ const SearchInput = (props) => {
                     placeholder="Search IMDB Movies"
                     inputProps={{ 'aria-label': 'search movies' }}
                     onChange={handleQueryButton}
+                    value={inputValue}
                 />
                 <IconButton type="submit" className={classes.iconButton} aria-label="search">
                     <SearchIcon />
