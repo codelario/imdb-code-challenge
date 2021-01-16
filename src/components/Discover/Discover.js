@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import configs from "../../App.config";
 import DetailView from "../DetailView/DetailView";
-import imdbNoImage from './public/img/imdb-no-image.jpg';
+import imdbNoImage from '../../public/img/imdb-no-image.jpg';
 
 const Discover = (props) => {
 

@@ -6,15 +6,12 @@ const Rating = (props) => {
 
   const [selectedItem, setSelectedItem] = useState(0);
   useEffect(() => {
-    if (props.fireResetRating) {
-      resetRatingValue();
-    }
+    resetRatingValue();
   }, [props.fireResetRating]);
 
   const ratingChanged = (newRating) => {
     if (newRating !== selectedItem) {
       setSelectedItem(newRating);
-      props.updatingRatingFn();
       props.filterByRateFn(newRating)
     }
   };
@@ -23,7 +20,6 @@ const Rating = (props) => {
 
   return (
     <div className={styles.Rating}>
-
       <RatingStars
         name="hover-feedback"
         value={selectedItem}

@@ -11,10 +11,8 @@ const SearchInput = (props) => {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        if (!props.updatingRatingFn) {
-            setInputValue('');
-        }
-    }, [props.updatingRatingFn]);
+        resetTextbox();
+    }, [props.fireResetTextBox]);
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -41,6 +39,8 @@ const SearchInput = (props) => {
         }
         props.searchQueryFn(evt.target.value);
     };
+
+    const resetTextbox = () => setInputValue('');
 
     return (
         <Fragment>

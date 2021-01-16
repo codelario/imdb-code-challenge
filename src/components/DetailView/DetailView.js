@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
 import config from "../../App.config";
+import imdbNoImage from '../../public/img/imdb-no-image.jpg';
 
 const DetailView = (props) => {
 
@@ -32,6 +33,7 @@ const DetailView = (props) => {
 
   const [modalStyle] = useState(getModalStyle);
   const classes = useStyles();
+  const previewImg = (!props.item.poster_path) ? imdbNoImage : `${config.PREVIEW_URL}${props.item.poster_path}`;
 
   return (
     <div className={classes.paper} style={modalStyle} >
@@ -41,7 +43,7 @@ const DetailView = (props) => {
             component="img"
             alt={props.item.title}
             height="140"
-            image={`${config.IMAGE_URL}${props.item.poster_path}`}
+            image={previewImg}
             title={props.item.title}
           />
           <CardContent>
